@@ -34,7 +34,7 @@ function unlockApp() {
 }
 
 async function loadData() {
-  const response = await fetch("data.json");
+  const response = await fetch("src/assets/data.json");
   if (!response.ok) throw new Error(`No se pudo cargar data.json (${response.status})`);
   return response.json();
 }
