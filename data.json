@@ -1,0 +1,98 @@
+{
+  "systems": [
+    { "id": "contabilidad", "name": "Contabilidad", "favorite": true },
+    { "id": "inventario", "name": "Inventario", "favorite": false },
+    { "id": "mantencion", "name": "Mantención", "favorite": false },
+    { "id": "tesoreria", "name": "Tesorería", "favorite": false },
+    { "id": "mapa-de-procesos", "name": "Mapa de Procesos Universidad Chinchorro", "favorite": true }
+  ],
+  "riskLevels": [
+    { "id": "alto", "label": "Alto", "colorVar": "--risk-high" },
+    { "id": "medio-alto", "label": "Medio-Alto", "colorVar": "--risk-medium-high" },
+    { "id": "medio", "label": "Medio", "colorVar": "--risk-medium" },
+    { "id": "bajo", "label": "Bajo", "colorVar": "--risk-low" }
+  ],
+  "categories": [
+    { "id": "strategic", "title": "Procesos estratégicos", "className": "strategic", "description": "Orientan el desarrollo institucional, definen prioridades y permiten evaluar el cumplimiento de los objetivos de la Universidad Chinchorro." },
+    { "id": "mission", "title": "Procesos misionales", "className": "mission", "description": "Concretan la misión universitaria mediante la formación, la investigación y la vinculación con el medio." },
+    { "id": "support", "title": "Procesos de apoyo", "className": "support", "description": "Proveen la gestión, los recursos y los servicios necesarios para que los procesos estratégicos y misionales funcionen." }
+  ],
+  "groups": [
+    { "id": "formacion", "categoryId": "mission", "title": "Formación" },
+    { "id": "investigacion-y-desarrollo", "categoryId": "mission", "title": "Investigación y desarrollo" },
+    { "id": "vinculacion-con-el-medio", "categoryId": "mission", "title": "Vinculación con el medio" },
+    { "id": "soporte-a-la-formacion", "categoryId": "support", "title": "Soporte a la formación" },
+    { "id": "infraestructura-de-gestion", "categoryId": "support", "title": "Infraestructura de gestión" },
+    { "id": "evaluacion-control-de-gestion-y-calidad", "categoryId": "support", "title": "Evaluación, control de gestión y calidad" },
+    { "id": "gestion-de-personas-y-desarrollo", "categoryId": "support", "title": "Gestión de personas y desarrollo" }
+  ],
+  "subgroups": [
+    { "id": "gestion-tecnologica", "groupId": "evaluacion-control-de-gestion-y-calidad", "title": "Gestión tecnológica" }
+  ],
+  "macroprocesses": [
+    { "id": "direccion-estrategica", "categoryId": "strategic", "label": "Dirección estratégica", "description": "Define las prioridades institucionales, coordina su implementación y evalúa el avance de los objetivos estratégicos de la Universidad." },
+    { "id": "calidad-y-analisis-institucional", "categoryId": "strategic", "label": "Calidad y análisis institucional", "description": "Gestiona la calidad institucional mediante autoevaluación, análisis de información y seguimiento de acciones de mejora continua." },
+    { "id": "sostenibilidad", "categoryId": "strategic", "label": "Sostenibilidad", "description": "Integra criterios de sostenibilidad en la gestión universitaria y promueve el desarrollo responsable en la institución y su entorno." }
+  ],
+  "processes": [
+    { "id": "planificacion-estrategica-institucional", "label": "Planificación estratégica institucional", "macroprocessId": "direccion-estrategica", "risk": "Medio" },
+    { "id": "formulacion-de-objetivos-y-metas", "label": "Formulación de objetivos y metas", "macroprocessId": "direccion-estrategica", "risk": "Medio-Alto" },
+    { "id": "seguimiento-de-compromisos-institucionales", "label": "Seguimiento de compromisos institucionales", "macroprocessId": "direccion-estrategica", "risk": "Alto" },
+    { "id": "analisis-del-entorno-y-escenarios", "label": "Análisis del entorno y escenarios", "macroprocessId": "direccion-estrategica", "risk": "Medio" },
+    { "id": "evaluacion-de-resultados-estrategicos", "label": "Evaluación de resultados estratégicos", "macroprocessId": "direccion-estrategica", "risk": "Bajo" },
+
+    { "id": "autoevaluacion-institucional", "label": "Autoevaluación institucional", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Alto" },
+    { "id": "acreditacion-institucional", "label": "Acreditación institucional", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Medio-Alto" },
+    { "id": "analisis-de-indicadores-institucionales", "label": "Análisis de indicadores institucionales", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Medio" },
+    { "id": "gestion-de-informacion-para-la-toma-de-decisiones", "label": "Gestión de información para la toma de decisiones", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Medio-Alto" },
+    { "id": "seguimiento-de-planes-de-mejora", "label": "Seguimiento de planes de mejora", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Bajo" },
+    { "id": "evaluacion-de-resultados-de-calidad", "label": "Evaluación de resultados de calidad", "macroprocessId": "calidad-y-analisis-institucional", "risk": "Medio" },
+
+    { "id": "planificacion-de-iniciativas-de-sostenibilidad", "label": "Planificación de iniciativas de sostenibilidad", "macroprocessId": "sostenibilidad", "risk": "Medio" },
+    { "id": "gestion-ambiental-institucional", "label": "Gestión ambiental institucional", "macroprocessId": "sostenibilidad", "risk": "Bajo" },
+    { "id": "vinculacion-para-el-desarrollo-sostenible", "label": "Vinculación para el desarrollo sostenible", "macroprocessId": "sostenibilidad", "risk": "Medio-Alto" },
+    { "id": "seguimiento-de-compromisos-de-sostenibilidad", "label": "Seguimiento de compromisos de sostenibilidad", "macroprocessId": "sostenibilidad", "risk": "Medio" },
+    { "id": "evaluacion-de-impacto-institucional", "label": "Evaluación de impacto institucional", "macroprocessId": "sostenibilidad", "risk": "Bajo" },
+
+    { "id": "admision-e-ingreso", "label": "Admisión e ingreso", "groupId": "formacion", "risk": null },
+    { "id": "proceso-formativo", "label": "Proceso formativo", "groupId": "formacion", "risk": null },
+    { "id": "graduacion-titulacion-y-egreso", "label": "Graduación, titulación y egreso", "groupId": "formacion", "risk": null },
+
+    { "id": "identificacion-de-oportunidades-y-convocatorias", "label": "Identificación de oportunidades y convocatorias", "groupId": "investigacion-y-desarrollo", "risk": null },
+    { "id": "evaluacion-y-gestion-de-portafolio-tecnologico", "label": "Evaluación y gestión de portafolio tecnológico", "groupId": "investigacion-y-desarrollo", "risk": null },
+    { "id": "ejecucion-de-iniciativas", "label": "Ejecución de iniciativas", "groupId": "investigacion-y-desarrollo", "risk": null },
+    { "id": "gestion-de-medios-de-divulgacion", "label": "Gestión de medios de divulgación", "groupId": "investigacion-y-desarrollo", "risk": null },
+    { "id": "proteccion-y-comercializacion", "label": "Protección y comercialización", "groupId": "investigacion-y-desarrollo", "risk": null },
+    { "id": "gestion-de-publicaciones", "label": "Gestión de publicaciones", "groupId": "investigacion-y-desarrollo", "risk": null },
+
+    { "id": "levantamiento-de-necesidades-y-priorizacion", "label": "Levantamiento de necesidades y priorización", "groupId": "vinculacion-con-el-medio", "risk": null },
+    { "id": "vinculacion-con-el-medio", "label": "Vinculación con el medio", "groupId": "vinculacion-con-el-medio", "risk": null },
+    { "id": "gestion-patrimonial-y-cultural", "label": "Gestión patrimonial y cultural", "groupId": "vinculacion-con-el-medio", "risk": null },
+    { "id": "gestion-comunicacional", "label": "Gestión comunicacional", "groupId": "vinculacion-con-el-medio", "risk": null },
+
+    { "id": "gestion-de-acreditacion-de-programas-academicos", "label": "Gestión de acreditación de programas académicos", "groupId": "soporte-a-la-formacion", "risk": null },
+    { "id": "apoyo-a-la-formacion", "label": "Apoyo a la formación", "groupId": "soporte-a-la-formacion", "risk": null },
+    { "id": "gestion-de-docencia", "label": "Gestión de docencia", "groupId": "soporte-a-la-formacion", "risk": null },
+    { "id": "gestion-de-servicios-estudiantiles", "label": "Gestión de servicios estudiantiles", "groupId": "soporte-a-la-formacion", "risk": null },
+    { "id": "gestion-de-admision-retencion-y-egreso", "label": "Gestión de admisión, retención y egreso", "groupId": "soporte-a-la-formacion", "risk": null },
+    { "id": "gestion-de-biblioteca-y-extension-cultural", "label": "Gestión de biblioteca y extensión cultural", "groupId": "soporte-a-la-formacion", "risk": null },
+
+    { "id": "gestion-financiera-y-administrativa", "label": "Gestión financiera y administrativa", "groupId": "infraestructura-de-gestion", "risk": null },
+    { "id": "gestion-de-riesgo-y-oportunidades", "label": "Gestión de riesgo y oportunidades", "groupId": "infraestructura-de-gestion", "risk": null },
+    { "id": "gestion-de-infraestructura", "label": "Gestión de infraestructura", "groupId": "infraestructura-de-gestion", "risk": null },
+    { "id": "gestion-de-asuntos-legales", "label": "Gestión de asuntos legales", "groupId": "infraestructura-de-gestion", "risk": null },
+    { "id": "gestion-documental", "label": "Gestión documental", "groupId": "infraestructura-de-gestion", "risk": null },
+
+    { "id": "control-financiero", "label": "Control financiero", "groupId": "evaluacion-control-de-gestion-y-calidad", "risk": null },
+    { "id": "control-de-gestion-y-seguimiento", "label": "Control de gestión y seguimiento", "groupId": "evaluacion-control-de-gestion-y-calidad", "risk": null },
+    { "id": "control-legal-y-auditoria-interna", "label": "Control legal y auditoría interna", "groupId": "evaluacion-control-de-gestion-y-calidad", "risk": null },
+    { "id": "gestion-digital-y-desarrollo-tecnologico", "label": "Gestión digital y desarrollo tecnológico", "subgroupId": "gestion-tecnologica", "risk": null },
+
+    { "id": "gestion-de-equidad-e-inclusion", "label": "Gestión de equidad e inclusión", "groupId": "gestion-de-personas-y-desarrollo", "risk": null },
+    { "id": "gestion-organizacional", "label": "Gestión organizacional", "groupId": "gestion-de-personas-y-desarrollo", "risk": null },
+    { "id": "internacionalizacion", "label": "Internacionalización", "groupId": "gestion-de-personas-y-desarrollo", "risk": null },
+    { "id": "gestion-de-convenios-institucionales", "label": "Gestión de convenios institucionales", "groupId": "gestion-de-personas-y-desarrollo", "risk": null },
+    { "id": "gestion-de-reclutamiento-y-talento-humano", "label": "Gestión de reclutamiento y talento humano", "groupId": "gestion-de-personas-y-desarrollo", "risk": null },
+    { "id": "gestion-de-comunicacion-y-relaciones-institucionales", "label": "Gestión de comunicación y relaciones institucionales", "groupId": "gestion-de-personas-y-desarrollo", "risk": null }
+  ]
+}
