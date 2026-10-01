@@ -10,7 +10,6 @@
       --navy: #123b63;
       --navy-deep: #0a2f4f;
       --blue: #2f6c8d;
-      --accent: #9c7a2e;
       --ink: #273442;
       --muted: #65717f;
       --line: #d9e0e7;
@@ -191,10 +190,9 @@
     .process-screen { max-width: 1560px; margin: 0 auto; padding: 18px 22px 28px; }
     .process-heading { display: flex; align-items: flex-start; justify-content: center; gap: 16px; margin-bottom: 14px; text-align: center; }
     .process-heading h1 { margin: 0; color: var(--navy); font-size: 24px; font-weight: 750; }
-    .process-heading h1::after { display: block; width: 56px; height: 3px; margin: 8px auto 0; background: var(--accent); content: ""; }
     .process-heading p { max-width: 760px; margin: 6px auto 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
     .process-flow { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: stretch; gap: 8px; }
-    .process-boundary { display: flex; align-items: center; justify-content: center; padding: 10px 7px; border: 1px solid #95a3b8; border-radius: 7px; border-top: 3px solid var(--accent); color: var(--navy); background: #f7f8fb; text-align: center; }
+    .process-boundary { display: flex; align-items: center; justify-content: center; padding: 10px 7px; border: 1px solid #95a3b8; border-radius: 7px; color: var(--navy); background: #f7f8fb; text-align: center; }
     .process-boundary-copy { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 12px; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); }
     .process-boundary h2 { margin: 0; font-size: 13px; }
     .process-boundary p { margin: 0; font-size: 11px; font-weight: 600; line-height: 1.45; }
@@ -202,7 +200,8 @@
     .process-level { position: relative; padding: 0 10px 12px; border: 1px solid var(--line-strong); border-radius: 6px; background: #f7f8fb; }
     .process-level > h2 { margin: 0 -10px 10px; padding: 9px 14px; border-radius: 5px 5px 0 0; color: #fff; background: var(--strategic); font-size: 13px; font-weight: 750; text-align: center; text-transform: uppercase; }
     .process-level > h2 a { display: block; margin: -9px -14px; padding: 9px 14px; border-radius: inherit; color: inherit; text-decoration: none; }
-    .process-level > h2 a:hover, .process-level > h2 a:focus-visible { background: rgba(255,255,255,.12); outline: 2px solid #fff; outline-offset: -3px; }
+    .process-level > h2 a:hover { background: rgba(255,255,255,.12); }
+    .process-level > h2 a:focus-visible { background: rgba(255,255,255,.12); outline: 2px solid #fff; outline-offset: -3px; }
     .process-level.strategic > h2 { background: var(--strategic); }
     .process-level.mission > h2 { background: var(--mission); }
     .process-level.support > h2 { background: var(--support); }
@@ -215,7 +214,6 @@
     .process-links { display: grid; align-content: start; gap: 5px; }
     .process-link { display: grid; place-items: center; min-height: 42px; padding: 7px 8px; border: 1px solid var(--line-strong); border-radius: 5px; color: #34485d; background: #f7f9fb; font-size: 12px; font-weight: 550; line-height: 1.3; text-align: center; text-decoration: none; transition: background-color .15s ease, border-color .15s ease, transform .15s ease; }
     .process-link:hover, .process-link:focus-visible { transform: translateY(-1px); background: #eaf1f7; }
-    .process-link.is-macro:hover, .process-link.is-macro:focus-visible { border-color: var(--blue); }
     .process-group-subtitle { margin: 5px 0 3px; color: var(--navy); font-size: 11px; font-weight: 750; text-align: center; text-transform: uppercase; }
     .process-status { min-height: 16px; margin: 10px 0 0; color: var(--muted); font-size: 11px; }
     .detail-back { display: inline-block; margin-bottom: 14px; color: var(--navy); font-size: 12px; text-decoration: none; }
@@ -223,11 +221,11 @@
     .process-detail-heading { margin-bottom: 18px; text-align: center; }
     .process-detail-heading h1 { margin: 0; color: var(--navy); font-size: 21px; }
     .process-detail-heading p { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
-    .process-detail-content { max-width: 900px; margin: 0 auto; padding: 20px; border: 1px solid #b7c3d8; border-top: 3px solid #c4a13c; border-radius: 6px; background: #f7f8fb; }
+    .process-detail-content { max-width: 900px; margin: 0 auto; padding: 20px; border: 1px solid #b7c3d8; border-radius: 6px; background: #f7f8fb; }
     .process-detail-content h2 { margin: 0 0 8px; color: var(--navy); font-size: 15px; text-align: center; }
     .process-detail-content p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; text-align: center; }
     .macro-overview { display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: 12px; max-width: 900px; margin: 0 auto 16px; }
-    .macro-description, .macro-count { min-width: 0; padding: 14px; border: 1px solid #b7c3d8; border-top: 3px solid #c4a13c; border-radius: 6px; background: #fff; }
+    .macro-description, .macro-count { min-width: 0; padding: 14px; border: 1px solid #b7c3d8; border-radius: 6px; background: #fff; }
     .macro-description h2 { margin: 0 0 7px; color: var(--navy); font-size: 15px; }
     .macro-description p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
     .macro-count { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
@@ -236,7 +234,6 @@
     .macro-count small { color: var(--muted); font-size: 11px; }
     .macro-dashboard { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .9fr); gap: 16px; max-width: 900px; margin: 0 auto 18px; }
     .risk-panel, .macro-process-list { min-width: 0; padding: 14px; border: 1px solid #b7c3d8; border-radius: 6px; background: #fff; }
-    .risk-panel { border-top: 3px solid #c4a13c; }
     .risk-panel-heading { display: flex; justify-content: space-between; gap: 8px; color: var(--navy); font-size: 12px; font-weight: 700; }
     .risk-panel-heading span:last-child { color: var(--muted); font-size: 11px; font-weight: 400; }
     .risk-content { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 170px; }
