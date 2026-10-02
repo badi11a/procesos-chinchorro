@@ -1,24 +1,18 @@
-# Arquitectura y transición a Angular
+# Arquitectura Angular
 
-El sitio sigue siendo una aplicación estática publicada por GitHub Pages.
-
-## Estructura actual
+El prototipo usa Angular en modo standalone y se publica en GitHub Pages a partir de su compilación de producción.
 
 ```text
-index.html              Punto de entrada estático
-src/main.js             Inicio, estado, rutas y renderizado actual
-src/styles.css          Estilos de la interfaz
-src/assets/data.json    Datos del mapa de procesos
+index.html                         Contenedor de la aplicación Angular
+src/main.ts                        Punto de inicio y configuración HTTP
+src/app/app.component.*            Interfaz y comportamiento de la aplicación
+src/app/process-data.service.ts    Carga tipada de los datos del dominio
+src/styles.css                     Estilos globales
+src/assets/data.json               Datos del mapa de procesos
 ```
 
-## Migración futura
+## Desarrollo y publicación
 
-Al adoptar Angular:
-
-1. Crear el espacio de trabajo Angular sin reemplazar `src/assets/data.json`.
-2. Migrar `src/main.js` a `src/main.ts`.
-3. Dividir la interfaz en componentes de mapa, navegación lateral y detalle.
-4. Mover la carga y transformación de datos a un servicio Angular.
-5. Cambiar el workflow de GitHub Pages para publicar el resultado de `ng build` desde `dist/`.
-
-Mientras tanto, el workflow actual continúa publicando el sitio estático desde la raíz del repositorio.
+- `npm start`: inicia el servidor local de Angular.
+- `npm run build`: genera la aplicación en `dist/procesos/browser`.
+- GitHub Actions instala las dependencias, compila el proyecto y publica esa carpeta en GitHub Pages.

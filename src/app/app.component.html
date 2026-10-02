@@ -1,0 +1,64 @@
+<div class="login-gate" *ngIf="!authenticated" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <form class="login-card" (ngSubmit)="login()" autocomplete="off">
+    <div class="seal" aria-hidden="true">UCH</div>
+    <h1 id="loginTitle">Acceso restringido</h1>
+    <p class="subtitle">Ingresa tus credenciales para continuar.</p>
+    <div class="login-field"><label for="loginUser">Usuario</label><input id="loginUser" name="username" [(ngModel)]="username" type="text" required autocomplete="username"></div>
+    <div class="login-field"><label for="loginPass">Contraseña</label><input id="loginPass" name="password" [(ngModel)]="password" type="password" required autocomplete="current-password"></div>
+    <button class="login-submit" type="submit">Ingresar</button>
+    <p class="login-error" role="alert">{{ loginError }}</p>
+  </form>
+</div>
+
+<div class="app" *ngIf="authenticated" [class.sidebar-collapsed]="sidebarCollapsed">
+  <div class="brand" aria-label="Universidad Chinchorro">
+    <div class="seal" aria-hidden="true">UCH</div>
+    <div class="brand-copy"><strong>Universidad Chinchorro</strong><span>Santiago · U. Chinchorro</span></div>
+  </div>
+
+  <header class="topbar">
+    <button class="icon-button menu-toggle" type="button" (click)="sidebarCollapsed = !sidebarCollapsed" [attr.aria-label]="sidebarCollapsed ? 'Expandir menú' : 'Contraer menú'" [title]="sidebarCollapsed ? 'Expandir menú' : 'Contraer menú'">☰</button>
+    <div class="app-title">Sistemas Administrativos Y Financieros<span class="app-subtitle">Dashboard</span></div>
+    <div class="top-spacer"></div>
+    <nav class="top-actions" aria-label="Accesos rápidos"><button class="icon-button" type="button" title="Inicio" aria-label="Inicio">⌂</button><button class="icon-button" type="button" title="Aplicaciones" aria-label="Aplicaciones">▦</button><button class="icon-button" type="button" title="Notificaciones" aria-label="Notificaciones">♢<span class="notification-count">1</span></button><button class="user-menu" type="button" aria-label="Cuenta de Admin"><span class="avatar">A</span><span class="user-name">Admin</span></button></nav>
+  </header>
+
+  <aside class="sidebar" [class.is-collapsed]="sidebarCollapsed || listCollapsed" aria-label="Menú de sistemas">
+    <div class="search-wrap"><label class="search-box"><input type="search" [(ngModel)]="searchTerm" placeholder="Buscar sistema o perfil..." aria-label="Buscar sistema o perfil"><span aria-hidden="true">⌕</span></label></div>
+    <div class="view-switch" role="tablist" aria-label="Filtrar sistemas">
+      <button type="button" [class.active]="activeView === 'all'" (click)="activeView = 'all'" role="tab" [attr.aria-selected]="activeView === 'all'">Todo</button>
+      <button type="button" [class.active]="activeView === 'favorites'" (click)="activeView = 'favorites'" role="tab" [attr.aria-selected]="activeView === 'favorites'">☆ Favoritos</button>
+    </div>
+    <div class="systems-header"><div><span class="systems-label">Sistema</span><span class="count">{{ systemCount }}</span></div><button class="collapse-button" type="button" (click)="listCollapsed = !listCollapsed" [attr.aria-label]="listCollapsed ? 'Mostrar lista de sistemas' : 'Ocultar lista de sistemas'">−</button></div>
+    <ul class="system-list" role="listbox">
+      <li *ngFor="let system of visibleSystems" class="system-row" [class.selected]="selectedSystemId === system.id" role="option" [attr.aria-selected]="selectedSystemId === system.id" tabindex="0" (click)="selectSystem(system.id)" (keydown.enter)="selectSystem(system.id)" (keydown.space)="selectSystem(system.id)">
+        <span class="status-dot" aria-hidden="true"></span><span class="system-name" [title]="system.name">{{ system.name }}</span>
+        <button class="favorite-button" type="button" [class.is-favorite]="isFavorite(system.id)" (click)="toggleFavorite(system.id, $event)" [attr.aria-label]="(isFavorite(system.id) ? 'Quitar de' : 'Agregar a') + ' favoritos: ' + system.name">★</button>
+      </li>
+      <li *ngIf="!visibleSystems.length" class="empty-state">No se encontraron sistemas</li>
+    </ul>
+    <footer class="sidebar-footer"><p class="session-time">{{ sessionTime }}</p><select class="seat-select" aria-label="Cambiar sede"><option value="">Cambiar Sede...</option><option>Casa Matriz Santiago</option><option>Sede Arica</option><option>Sede Antofagasta</option></select><div class="quick-links" aria-label="Módulos frecuentes"><button class="quick-link" type="button">⌂</button><button class="quick-link" type="button">▣</button><button class="quick-link" type="button">▥</button><button class="quick-link" type="button">?</button></div></footer>
+  </aside>
+
+  <main class="main" aria-label="Área de trabajo">
+    <p *ngIf="loadingError" class="workspace-label">{{ loadingError }}</p>
+    <p *ngIf="isGenericSystem" class="workspace-label">Inicio área: <span>[2]</span></p>
+
+    <section *ngIf="isMapVisible" class="process-screen" aria-labelledby="processTitle">
+      <div class="process-heading"><div><h1 id="processTitle">Mapa de Procesos</h1><p>Procesos estratégicos, misionales y de apoyo de la Universidad Chinchorro.</p></div></div>
+      <div class="process-flow"><aside class="process-boundary"><div class="process-boundary-copy"><h2>Entradas</h2><p>Necesidades de desarrollo científico, tecnológico y humanístico del territorio y la institución.</p></div></aside><div class="process-levels">
+        <section *ngFor="let level of processGroups" class="process-level" [class]="'process-level ' + level.className" [attr.aria-labelledby]="'level-' + level.id">
+          <h2 [id]="'level-' + level.id"><a [href]="'#categoria-' + level.id" [title]="'Ver detalle de ' + level.title">{{ level.title }}</a></h2>
+          <div class="process-grid" [class]="'process-grid ' + level.id + '-grid'">
+            <ng-container *ngIf="level.items; else groupedProcesses"><a *ngFor="let item of level.items" class="process-link" [class.is-macro]="item.type === 'macro'" [href]="processRoute(item)" [title]="'Ver detalle de ' + item.label">{{ item.label }}</a></ng-container>
+            <ng-template #groupedProcesses><section *ngFor="let group of level.groups" class="process-group"><h3>{{ group.title }}</h3><div class="process-links"><a *ngFor="let item of group.items" class="process-link" [href]="processRoute(item)">{{ item.label }}</a></div><ng-container *ngFor="let subgroup of group.subgroups"><p class="process-group-subtitle">{{ subgroup.title }}</p><div class="process-links"><a *ngFor="let item of subgroup.items" class="process-link" [href]="processRoute(item)">{{ item.label }}</a></div></ng-container></section></ng-template>
+          </div>
+        </section>
+      </div><aside class="process-boundary"><div class="process-boundary-copy"><h2>Resultados</h2><p>Profesionales formados, publicaciones, asesorías, cursos y servicios para la comunidad.</p></div></aside></div>
+    </section>
+
+    <section *ngIf="activeProcess as process" class="process-screen" aria-labelledby="processDetailTitle"><a class="detail-back" href="#mapa">Volver al mapa</a><header class="process-detail-heading"><h1 id="processDetailTitle">{{ process.label }}</h1><p>{{ process.category }}</p></header><section class="process-detail-content"><h2>Detalle del proceso</h2><p>La información detallada de este proceso estará disponible aquí.</p></section></section>
+
+    <section *ngIf="activeMacro as detail" class="process-screen" aria-labelledby="processDetailTitle"><a class="detail-back" href="#mapa">Volver al mapa</a><header class="process-detail-heading"><h1 id="processDetailTitle">{{ detail.label }}</h1><p>{{ macroSubtitle }}</p></header><div class="macro-overview"><section class="macro-description"><h2>Descripción del macroproceso</h2><p>{{ detail.description }}</p></section><section class="macro-count"><span>Procesos existentes</span><strong>{{ detail.processes.length }}</strong><small>en este macroproceso</small></section></div><div class="macro-dashboard"><section class="risk-panel"><div class="risk-panel-heading"><span>Procesos por nivel de riesgo</span><span>Total: {{ detail.processes.length }} procesos</span></div><div class="risk-content"><div class="risk-chart" [style.--risk-gradient]="riskGradient(detail)" role="img" [attr.aria-label]="'Distribución de riesgo en ' + detail.processes.length + ' procesos'"><div class="risk-total">{{ detail.processes.length }}<small>procesos</small></div></div><ul class="risk-legend"><li *ngFor="let level of riskLevels"><span class="risk-swatch" [style.--risk-color]="riskColor(level.label)"></span><strong [style.--risk-color]="riskColor(level.label)">{{ level.label }}</strong><span>{{ riskCount(detail, level.label) }} proceso{{ riskCount(detail, level.label) === 1 ? '' : 's' }} <small>({{ riskPercent(detail, level.label) }}%)</small></span></li></ul></div></section><section class="macro-process-list"><h2>Procesos incluidos ({{ detail.processes.length }})</h2><ol><li *ngFor="let process of detail.processes">{{ process.name }}<span class="risk-badge" [style.--risk-color]="riskColor(process.risk)">{{ process.risk }}</span></li></ol></section></div><p class="demo-note">Datos de ejemplo; distribución calculada desde los procesos listados.</p></section>
+  </main>
+</div>
